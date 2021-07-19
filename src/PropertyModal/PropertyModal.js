@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./propertyModal.css";
 import { CloseButton } from "@chakra-ui/react";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
@@ -25,11 +25,36 @@ const PropertyModal = ({
   expdate,
   featuredimg,
 }) => {
+  const [seeingMore, setSeeingMore] = useState(false);
+
   const hideModal = (e) => {
     e.stopPropagation();
     setModalShowing(false);
     preventScrollOnBody("allow");
   };
+
+  const seeMoreFunction = (e, seeMoreOrLess) => {
+    console.log(seeingMore);
+    if (seeMoreOrLess === "See Less") {
+      setSeeingMore(false);
+      e.stopPropagation();
+      preventScrollOnBody("prevent");
+    } else {
+      setSeeingMore(true);
+      e.stopPropagation();
+      preventScrollOnBody("prevent");
+    }
+  };
+
+  let largeScenarioDescription;
+  let seeMoreOrLess;
+  if (seeingMore) {
+    largeScenarioDescription = "largeScenarioDescription";
+    seeMoreOrLess = "See Less";
+  } else {
+    largeScenarioDescription = "";
+    seeMoreOrLess = "See More";
+  }
 
   return (
     <div
@@ -70,7 +95,7 @@ const PropertyModal = ({
                 className="linkBtns"
                 mr="10px"
               >
-                Google Maps&nbsp;
+                Google Maps
               </Button>
             </a>
             <a href="#">
@@ -80,13 +105,13 @@ const PropertyModal = ({
                 className="linkBtns"
                 colorScheme="blue"
               >
-                Lease&nbsp;
+                Lease
               </Button>
             </a>
           </ButtonGroup>
           <div className="scenarioContainer">
             <h3 className="scenarioHeader">{strategicdirection}</h3>
-            <p className="scenarioDescription">
+            <p className={`scenarioDescription ${largeScenarioDescription}`}>
               Nisi ipsum aute irure eu incididunt. Nostrud velit labore
               adipisicing excepteur aute enim adipisicing excepteur adipisicing
               pariatur amet. Nostrud incididunt ad adipisicing nulla ex quis ex
@@ -95,7 +120,12 @@ const PropertyModal = ({
               pariatur anim minim ad labore in do.
             </p>
             <p className="seeMoreBtn">
-              <span className="seeMoreBtnSpan">See More</span>
+              <span
+                className="seeMoreBtnSpan"
+                onClick={(e) => seeMoreFunction(e, seeMoreOrLess)}
+              >
+                {seeMoreOrLess}
+              </span>
             </p>
           </div>
           <Tabs>
@@ -106,20 +136,13 @@ const PropertyModal = ({
             </TabList>
             <TabPanels className="tabPanel">
               <TabPanel className="tabPanel" _focus="none">
-                <p>
-                  <a href="#" className="documentLinks">
-                    Peer Property Report
-                  </a>
+                <div className="tabPanelContainer">
                   <p>
-                    loremId officia laboris et enim ullamco voluptate nulla
-                    adipisicing sint. Ad excepteur dolor consectetur dolore qui
-                    veniam do enim ea adipisicing duis minim amet sint. Laborum
-                    nulla voluptate eu excepteur ipsum veniam culpa nostrud
-                    Lorem dolor irure eiusmod. Lorem reprehenderit labore
-                    aliquip duis veniam sit. Enim ea cillum deserunt veniam nisi
-                    proident velit veniam tempor deserunt officia officia.
+                    <a href="#" className="documentLinks">
+                      Peer Property Report
+                    </a>
                   </p>
-                </p>
+                </div>
               </TabPanel>
               <TabPanel className="tabPanel">
                 <p>two!</p>

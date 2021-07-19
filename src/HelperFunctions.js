@@ -54,7 +54,6 @@ export const getCityStateZip = (address) => {
 
 export const preventScrollOnBody = (preventOrAllow) => {
   if (preventOrAllow === "prevent") {
-    console.log(window.scrollY);
     document.body.style.overflowY = "hidden";
     document.body.style.top = `-${window.scrollY}px`;
     document.body.style.position = "fixed";

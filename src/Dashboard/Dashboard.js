@@ -8,7 +8,7 @@ import ListView from "../ListView/ListView";
 const Dashboard = ({ navbarHeight }) => {
   const [viewPreference, setViewPreference] = useState("feed");
   const [sortConfig, setSortConfig] = useState({ key: "", direction: "" });
-  const [stickyPageHeader, setStickyPageHeader] = useState(false);
+  // const [stickyPageHeader, setStickyPageHeader] = useState(false);
 
   let propertiesArray = [...data];
   let propertiesArray1;
