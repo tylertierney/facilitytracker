@@ -32,7 +32,10 @@ const PropertyModal = ({
   };
 
   return (
-    <div className="modalContainer">
+    <div
+      className="modalContainer"
+      style={{ overflowY: "scroll", WebkitOverflowScrolling: "touch" }}
+    >
       <div className="modalHeaderDiv">
         <h2 className="modalHeaderText">Property Report</h2>
         <div onClick={(e) => hideModal(e)}>
@@ -77,12 +80,12 @@ const PropertyModal = ({
                 className="linkBtns"
                 colorScheme="blue"
               >
-                Peer Property Report&nbsp;
+                Lease&nbsp;
               </Button>
             </a>
           </ButtonGroup>
           <div className="scenarioContainer">
-            <h3 className="scenarioHeader">Blend & Extend</h3>
+            <h3 className="scenarioHeader">{strategicdirection}</h3>
             <p className="scenarioDescription">
               Nisi ipsum aute irure eu incididunt. Nostrud velit labore
               adipisicing excepteur aute enim adipisicing excepteur adipisicing
@@ -97,23 +100,53 @@ const PropertyModal = ({
           </div>
           <Tabs>
             <TabList>
-              <Tab>Documents</Tab>
-              <Tab>Notes</Tab>
-              <Tab>Staff</Tab>
+              <Tab onClick={(e) => e.stopPropagation()}>Documents</Tab>
+              <Tab onClick={(e) => e.stopPropagation()}>Notes</Tab>
+              <Tab onClick={(e) => e.stopPropagation()}>Something Else</Tab>
             </TabList>
-
             <TabPanels className="tabPanel">
               <TabPanel className="tabPanel" _focus="none">
-                <p>one!</p>
+                <p>
+                  <a href="#" className="documentLinks">
+                    Peer Property Report
+                  </a>
+                  <p>
+                    loremId officia laboris et enim ullamco voluptate nulla
+                    adipisicing sint. Ad excepteur dolor consectetur dolore qui
+                    veniam do enim ea adipisicing duis minim amet sint. Laborum
+                    nulla voluptate eu excepteur ipsum veniam culpa nostrud
+                    Lorem dolor irure eiusmod. Lorem reprehenderit labore
+                    aliquip duis veniam sit. Enim ea cillum deserunt veniam nisi
+                    proident velit veniam tempor deserunt officia officia.
+                  </p>
+                </p>
               </TabPanel>
               <TabPanel className="tabPanel">
                 <p>two!</p>
+                <p>
+                  loremId officia laboris et enim ullamco voluptate nulla
+                  adipisicing sint. Ad excepteur dolor consectetur dolore qui
+                  veniam do enim ea adipisicing duis minim amet sint. Laborum
+                  nulla voluptate eu excepteur ipsum veniam culpa nostrud Lorem
+                  dolor irure eiusmod. Lorem reprehenderit labore aliquip duis
+                  veniam sit. Enim ea cillum deserunt veniam nisi proident velit
+                  veniam tempor deserunt officia officia.
+                </p>
               </TabPanel>
               <TabPanel
                 className="tabPanel.tabpanel2.tabpanel3"
                 style={{ boxShadow: "none" }}
               >
                 <p>three!</p>
+                <p>
+                  loremId officia laboris et enim ullamco voluptate nulla
+                  adipisicing sint. Ad excepteur dolor consectetur dolore qui
+                  veniam do enim ea adipisicing duis minim amet sint. Laborum
+                  nulla voluptate eu excepteur ipsum veniam culpa nostrud Lorem
+                  dolor irure eiusmod. Lorem reprehenderit labore aliquip duis
+                  veniam sit. Enim ea cillum deserunt veniam nisi proident velit
+                  veniam tempor deserunt officia officia.
+                </p>
               </TabPanel>
             </TabPanels>
           </Tabs>

@@ -24,3 +24,12 @@
 .preventScroll {
   overflow: hidden;
 }
+
+.bodystuff {
+  height: 100vh;
+  /* overflow-y: hidden; */
+}
+
+.positionFixed {
+  position: fixed;
+}

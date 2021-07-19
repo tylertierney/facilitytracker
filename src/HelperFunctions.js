@@ -54,8 +54,15 @@ export const getCityStateZip = (address) => {
 
 export const preventScrollOnBody = (preventOrAllow) => {
   if (preventOrAllow === "prevent") {
-    document.body.classList.add("preventScroll");
+    console.log(window.scrollY);
+    document.body.style.overflowY = "hidden";
+    document.body.style.top = `-${window.scrollY}px`;
+    document.body.style.position = "fixed";
   } else {
-    document.body.classList.remove("preventScroll");
+    const scrollY = document.body.style.top;
+    document.body.style.position = "relative";
+    document.body.style.overflowY = "scroll";
+    document.body.style.top = "";
+    window.scrollTo(0, parseInt(scrollY || "0") * -1);
   }
 };
