@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/facilitytracker/static/css/main.92327a61.chunk.css",
+    "main.js": "/facilitytracker/static/js/main.6f9ccc33.chunk.js",
+    "main.js.map": "/facilitytracker/static/js/main.6f9ccc33.chunk.js.map",
+    "runtime-main.js": "/facilitytracker/static/js/runtime-main.a9c22661.js",
+    "runtime-main.js.map": "/facilitytracker/static/js/runtime-main.a9c22661.js.map",
+    "static/js/2.6a1aeaa9.chunk.js": "/facilitytracker/static/js/2.6a1aeaa9.chunk.js",
+    "static/js/2.6a1aeaa9.chunk.js.map": "/facilitytracker/static/js/2.6a1aeaa9.chunk.js.map",
+    "index.html": "/facilitytracker/index.html",
+    "static/css/main.92327a61.chunk.css.map": "/facilitytracker/static/css/main.92327a61.chunk.css.map",
+    "static/js/2.6a1aeaa9.chunk.js.LICENSE.txt": "/facilitytracker/static/js/2.6a1aeaa9.chunk.js.LICENSE.txt",
+    "static/media/image1.1c62087e.png": "/facilitytracker/static/media/image1.1c62087e.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.a9c22661.js",
+    "static/js/2.6a1aeaa9.chunk.js",
+    "static/css/main.92327a61.chunk.css",
+    "static/js/main.6f9ccc33.chunk.js"
+  ]
+}
