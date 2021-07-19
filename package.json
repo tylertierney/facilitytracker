@@ -1,7 +1,7 @@
 {
   "name": "leasing-dashboard",
   "version": "1.0.0",
-  "homepage": "https://tylertierney.github.io/facilitytracker/",
+  "homepage": "https://tylertierney.github.io/facilitytracker/public/",
   "description": "",
   "keywords": [],
   "main": "src/index.js",
