@@ -7,6 +7,7 @@ import {
   getCityStateZip,
   preventScrollOnBody,
   determineBadgeColor,
+  checkForSmallScreen,
 } from "../HelperFunctions";
 import { ButtonGroup, Button, Badge } from "@chakra-ui/react";
 import { SiGooglemaps } from "react-icons/si";
@@ -26,6 +27,10 @@ const PropertyModal = ({
   featuredimg,
 }) => {
   const [seeingMore, setSeeingMore] = useState(false);
+  const [boxIsMoving, setBoxIsMoving] = useState(false);
+  const [slideAnimation, setSlideAnimation] = useState("slidein");
+  const [modalYValue, setModalYValue] = useState(0);
+  const [isSmallScreen, setIsSmallScreen] = useState(checkForSmallScreen());
 
   const hideModal = (e) => {
     e.stopPropagation();
@@ -34,16 +39,13 @@ const PropertyModal = ({
   };
 
   const seeMoreFunction = (e, seeMoreOrLess) => {
-    console.log(seeingMore);
+    // preventScrollOnBody("prevent");
     if (seeMoreOrLess === "See Less") {
       setSeeingMore(false);
-      e.stopPropagation();
-      preventScrollOnBody("prevent");
     } else {
       setSeeingMore(true);
-      e.stopPropagation();
-      preventScrollOnBody("prevent");
     }
+    e.stopPropagation();
   };
 
   let largeScenarioDescription;
@@ -56,18 +58,101 @@ const PropertyModal = ({
     seeMoreOrLess = "See More";
   }
 
+  const startMoving = (e) => {
+    setBoxIsMoving(true);
+  };
+
+  const handleMouseMove = (e) => {
+    let box = e.currentTarget;
+    let newBoxY;
+    if (boxIsMoving) {
+      if (e.clientY) {
+        // MOUSE movement
+        let boxY = parseInt(box.style.top, 10);
+        setModalYValue(boxY);
+        newBoxY = boxY + e.movementY + "px";
+      } else {
+        // TOUCH movement
+        newBoxY =
+          e.changedTouches[0].clientY - e.target.clientHeight / 2 + "px";
+      }
+      box.style.setProperty("top", newBoxY);
+    }
+  };
+
+  const stopMoving = (e) => {
+    let box = e.currentTarget;
+    setBoxIsMoving(false);
+    if (parseInt(box.style.top, 10) > modalYValue) {
+      setSlideAnimation("slideout");
+      window.setTimeout(() => {
+        setModalShowing(false);
+        hideModal(e);
+      }, 300);
+    } else {
+      box.style.setProperty("top", "50px");
+    }
+  };
+
+  let eventHandlers;
+  if (isSmallScreen) {
+    eventHandlers = {
+      mousedown: (e) => startMoving(e),
+      touchstart: (e) => startMoving(e),
+      mouseup: (e) => stopMoving(e),
+      touchend: (e) => stopMoving(e),
+      mousemove: (e) => handleMouseMove(e),
+      touchmove: (e) => handleMouseMove(e),
+    };
+  } else {
+    eventHandlers = {
+      mousedown: undefined,
+      touchstart: undefined,
+      mouseup: undefined,
+      touchend: undefined,
+      mousemove: undefined,
+      touchmove: undefined,
+    };
+  }
+
   return (
     <div
-      className="modalContainer"
+      className={`modalContainer ${slideAnimation}`}
       style={{ overflowY: "scroll", WebkitOverflowScrolling: "touch" }}
+      onMouseDown={eventHandlers.mousedown}
+      onTouchStart={eventHandlers.touchstart}
+      onMouseUp={eventHandlers.mouseup}
+      onTouchEnd={eventHandlers.touchend}
+      onMouseMove={eventHandlers.mousemove}
+      onTouchMove={eventHandlers.touchmove}
+      onMouseLeave={() => setBoxIsMoving(false)}
     >
       <div className="modalHeaderDiv">
         <h2 className="modalHeaderText">Property Report</h2>
-        <div onClick={(e) => hideModal(e)}>
+        <div
+          style={{ position: "absolute" }}
+          className="modalheaderHandle"
+        ></div>
+        <div onClick={(e) => hideModal(e)} className="modalHeaderCloseBtn">
           <CloseButton size="lg" className="closeBtn" />
         </div>
       </div>
-      <div className="modalBodyDiv">
+      <div
+        className="modalBodyDiv"
+        onClick={(e) => e.stopPropagation()}
+        onMouseDown={(e) => {
+          e.stopPropagation();
+        }}
+        onMouseUp={(e) => {
+          e.stopPropagation();
+        }}
+        onTouchStart={(e) => {
+          e.stopPropagation();
+        }}
+        onTouchEnd={(e) => {
+          e.stopPropagation();
+        }}
+      >
         <div
           className="modalBodyImg"
           style={{ backgroundImage: `url(${featuredimg})` }}
@@ -130,46 +215,37 @@ const PropertyModal = ({
           </div>
           <Tabs>
             <TabList>
-              <Tab onClick={(e) => e.stopPropagation()}>Documents</Tab>
-              <Tab onClick={(e) => e.stopPropagation()}>Notes</Tab>
-              <Tab onClick={(e) => e.stopPropagation()}>Something Else</Tab>
+              <Tab className="tabHeaders" onClick={(e) => e.stopPropagation()}>
+                Documents
+              </Tab>
+              <Tab onClick={(e) => e.stopPropagation()} className="tabHeaders">
+                Notes
+              </Tab>
+              <Tab onClick={(e) => e.stopPropagation()} className="tabHeaders">
+                Something Else
+              </Tab>
             </TabList>
             <TabPanels className="tabPanel">
               <TabPanel className="tabPanel" _focus="none">
                 <div className="tabPanelContainer">
-                  <p>
+                  <p className="tabPanelParagraph">
                     <a href="#" className="documentLinks">
                       Peer Property Report
                     </a>
                   </p>
+                  <p>
+                    <br></br>
+                  </p>
                 </div>
               </TabPanel>
               <TabPanel className="tabPanel">
-                <p>two!</p>
-                <p>
-                  loremId officia laboris et enim ullamco voluptate nulla
-                  adipisicing sint. Ad excepteur dolor consectetur dolore qui
-                  veniam do enim ea adipisicing duis minim amet sint. Laborum
-                  nulla voluptate eu excepteur ipsum veniam culpa nostrud Lorem
-                  dolor irure eiusmod. Lorem reprehenderit labore aliquip duis
-                  veniam sit. Enim ea cillum deserunt veniam nisi proident velit
-                  veniam tempor deserunt officia officia.
-                </p>
+                <p className="tabPanelParagraph">{projectstatusupdate}</p>
               </TabPanel>
               <TabPanel
                 className="tabPanel.tabpanel2.tabpanel3"
                 style={{ boxShadow: "none" }}
               >
-                <p>three!</p>
-                <p>
-                  loremId officia laboris et enim ullamco voluptate nulla
-                  adipisicing sint. Ad excepteur dolor consectetur dolore qui
-                  veniam do enim ea adipisicing duis minim amet sint. Laborum
-                  nulla voluptate eu excepteur ipsum veniam culpa nostrud Lorem
-                  dolor irure eiusmod. Lorem reprehenderit labore aliquip duis
-                  veniam sit. Enim ea cillum deserunt veniam nisi proident velit
-                  veniam tempor deserunt officia officia.
-                </p>
+                <p className="tabPanelParagraph">three!</p>
               </TabPanel>
             </TabPanels>
           </Tabs>

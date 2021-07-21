@@ -12,11 +12,11 @@ const App = () => {
   return (
     <>
       <Navbar navbarHeight={navbarHeight} />
-      {isLoggedIn ? (
-        <Dashboard navbarHeight={navbarHeight} />
-      ) : (
+      {/* {isLoggedIn ? ( */}
+      <Dashboard navbarHeight={navbarHeight} />
+      {/* ) : (
         <LoginPage isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-      )}
+      )} */}
     </>
   );
 };

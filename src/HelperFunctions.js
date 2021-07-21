@@ -65,3 +65,10 @@ export const preventScrollOnBody = (preventOrAllow) => {
     window.scrollTo(0, parseInt(scrollY || "0") * -1);
   }
 };
+
+export const checkForSmallScreen = () => {
+  if (window.innerWidth < 600) {
+    return true;
+  }
+  return false;
+};

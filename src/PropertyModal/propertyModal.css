@@ -1,3 +1,7 @@
+body {
+  -webkit-tap-highlight-color: transparent;
+}
+
 .modalContainer {
   position: fixed;
   top: 50%;
@@ -59,6 +63,21 @@
   font-weight: 700;
   margin-left: 10px;
   outline: none;
+}
+
+.modalheaderHandle {
+  left: 50%;
+  transform: translate(-50%);
+  top: 12px;
+  height: 1.5rem;
+  width: 200px;
+  font-size: 5rem;
+  line-height: 1rem;
+  border-top: 3px solid gray;
+  /* border: dotted red 1px; */
+  cursor: pointer;
+  user-select: none;
+  visibility: hidden;
 }
 
 .closeBtn {
@@ -147,6 +166,14 @@
   user-select: none;
 }
 
+.tabHeaders {
+  background: none !important;
+}
+
+.tabHeaders:active {
+  background: none !important;
+}
+
 .tabPanel {
   outline: none;
   box-shadow: none !important;
@@ -162,6 +189,10 @@
   min-height: 7rem;
 }
 
+.tabPanelParagraph {
+  min-height: 7rem;
+}
+
 .documentLinks {
   text-decoration: underline;
   color: blue;
@@ -169,13 +200,42 @@
 
 @media only screen and (max-width: 600px) {
   .modalContainer {
-    top: 6vh;
+    top: 70px;
     transform: none;
     left: 0;
     width: 100vw;
-    height: 90vh;
-    box-shadow: none;
+    height: 85vh;
+    border: none;
     /* min-height: 100vh; */
+  }
+
+  .modalheaderHandle {
+    visibility: visible;
+  }
+
+  .modalHeaderDiv {
+    height: 25px;
+  }
+
+  .modalHeaderText {
+    display: none;
+  }
+
+  .modalHeaderCloseBtn {
+    display: none;
+  }
+
+  .slideout {
+    animation-name: slideout;
+    animation-duration: 0.3s;
+    top: 100vh;
+  }
+
+  .slidein {
+    animation-name: slidein;
+    animation-duration: 0.3s;
+    animation-timing-function: ease-in-out;
+    top: 60px;
   }
 
   @keyframes slidein {
@@ -183,7 +243,17 @@
       top: 100vh;
     }
     to {
-      top: 5vh;
+      top: 60px;
+    }
+  }
+
+  @keyframes slideout {
+    from {
+    }
+
+    to {
+      top: 100%;
+      visibility: hidden;
     }
   }
 
@@ -191,7 +261,19 @@
     display: none;
   }
 
+  .modalHeaderDiv {
+    border-top: none;
+  }
+
   .modalBodyImg {
     height: 200px;
+  }
+
+  .tabHeaders {
+    background: none !important;
+  }
+
+  .tabHeaders:active {
+    background: none !important;
   }
 }
