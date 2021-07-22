@@ -33,3 +33,9 @@
 .positionFixed {
   position: fixed;
 }
+
+@media only screen and (max-width: 600px) {
+  .propertyTR:hover {
+    background-color: transparent;
+  }
+}

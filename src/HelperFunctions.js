@@ -57,8 +57,10 @@ export const preventScrollOnBody = (preventOrAllow) => {
     document.body.style.overflowY = "hidden";
     document.body.style.top = `-${window.scrollY}px`;
     document.body.style.position = "fixed";
+    document.body.style.width = "100vw";
   } else {
     const scrollY = document.body.style.top;
+    document.body.style.width = "100vw";
     document.body.style.position = "relative";
     document.body.style.overflowY = "scroll";
     document.body.style.top = "";

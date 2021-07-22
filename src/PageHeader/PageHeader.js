@@ -48,12 +48,16 @@ const PageHeader = ({
           colorScheme={color1}
           className="viewIcons"
           onClick={() => setViewPreference("feed")}
+          // backgroundColor="transparent"
+          style={{ backgroundColor: "transparent" }}
         />
         <IconButton
           icon={<BiGridAlt size="1rem" />}
           colorScheme={color2}
           className="viewIcons"
           onClick={() => setViewPreference("grid")}
+          // backgroundColor="transparent"
+          style={{ backgroundColor: "transparent" }}
         />
         <IconButton
           borderTopRightRadius="lg"
@@ -62,6 +66,8 @@ const PageHeader = ({
           colorScheme={color3}
           className="viewIcons"
           onClick={() => setViewPreference("list")}
+          // backgroundColor="transparent"
+          style={{ backgroundColor: "transparent" }}
         />
       </ButtonGroup>
     </div>

@@ -17,6 +17,7 @@
 
 .viewIcons {
   box-shadow: none !important;
+  /* -webkit-tap-highlight-color: transparent; */
 }
 
 @media only screen and (max-width: 600px) {
