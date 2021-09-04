@@ -1,6 +1,6 @@
 # Facility Tracker
 
-Created using React and NodeJS
+Created using React and Chakra UI
 
 ## About
 
